@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "Kode";
+    src: url("../../fonts/KodeMono-Regular.ttf");
+}
+
+header {
+    background: black;
+    color: white;
+
+    .logo {
+        font-weight: 600;
+        font-size: 24px;
+    }
+
+    .presentation {
+        margin: 50px 0;
+        width: 100%;
+        height: 600px;
+        background: url(../../images/background-react.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-blend-mode: multiply; /*описывает то, как фоновое изображение элемента должно накладываться на фоны других элементов.*/
+        background-color: aqua;
+        position: relative;
+    }
+
+    .presentation::after { /*after добавляет точно такой же элемент поверх другого элемента*/
+        content: "It's React web-application"; /*Добавляет текст на картинку*/
+        font-size: 32px;
+        color: aqua;
+        position: absolute;
+        left: 35%;
+        top: 2%;
+    }
+
+    .presentation::before {
+        content: "React is SOOOOOOOOOO GOOOOOOOOOOOOOOOD";
+        position: absolute;
+        top: 250px;
+        left: 50px;
+        color: aqua;
+    }
+}

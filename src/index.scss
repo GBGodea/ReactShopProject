@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*Данное свойство делает так, что сайт будет приимать не только ширину и высоту элемента, а и Padding и border (Margin не входит!)*/
+}
+
+body {
+  background: mintcream;
+}
+
+.wrapper {
+  width: 80%;
+  margin: auto;
+}
