@@ -1,0 +1,19 @@
+.item { // item - это стили для div внутри index.jsx, который находится внутри Item
+    width: auto;
+    text-align: center;
+    margin: 75px 0;
+    border: 1px solid black;
+    border-radius: 7%;
+    padding: 10px;
+    overflow: hidden; // Скроет все выходящие края увеличиющейся картинки
+
+    img {
+        border-radius: 7%;
+        transition: transform 0.3s linear;
+    }
+
+    img:hover {
+        transform: scale(1.05);
+    }
+
+}
