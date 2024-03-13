@@ -1,4 +1,5 @@
 .item { // item - это стили для div внутри index.jsx, который находится внутри Item
+    position: relative;
     width: auto;
     text-align: center;
     margin: 75px 0;
@@ -6,14 +7,29 @@
     border-radius: 7%;
     padding: 10px;
     overflow: hidden; // Скроет все выходящие края увеличиющейся картинки
+    
 
-    img {
+    .hoverImg {
         border-radius: 7%;
         transition: transform 0.3s linear;
     }
 
-    img:hover {
+    .hoverImg:hover {
         transform: scale(1.05);
     }
+
+    .addToCard {
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
+        width: auto;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .addToCard:hover {
+        transform: scale(1.05) translateY(-5px);
+    }
+    
 
 }

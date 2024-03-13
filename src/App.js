@@ -98,12 +98,18 @@ function App() {
     }
   ]);
 
-
+  const[orders, setOrders] = useState([]);
   
+  const addToOrder = (item) => {
+    if(!orders.some((el) => el.id === item.id)) { // Сверяется id элемента, который мы хотим добавить, с элементом, которые есть в массиве
+      setOrders([...orders, item]) // ...название массива, item - указыват, что добавляется элемент
+    }
+} 
+
   return (
     <div className = "wrapper">
-      <Header />
-      <Items allItems = {items} />
+      <Header orders = {orders}/>
+      <Items allItems = {items} onAdd = {addToOrder} /> {/*Переменная onAdd, которая принимает функцию addToOrder*/}
       <Footer />
     </div>
   );

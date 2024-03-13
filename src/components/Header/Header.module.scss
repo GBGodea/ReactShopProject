@@ -6,6 +6,7 @@
 header {
     background: black;
     color: white;
+    position: relative;
 
     .logo {
         font-weight: 600;
@@ -58,4 +59,31 @@ header {
         left: 50px;
         color: aqua;
     }
+
+    .shopIcon {
+        float: right; // Двигает элемент в правый угол
+        cursor: pointer;
+        transition: color, transform 0.5s ease;
+
+        &:hover, &.active {
+            color: grey;
+            transform: scale(1.5);
+        }
+    }
+
+    .shopCart {
+        position: absolute;
+        color: grey;
+        top: 30px;
+        right: 0;
+        width: 450px;
+        min-height: 100px;
+        background: red;
+        -webkit-box-shadow: 10px 10px 15px 4px rgba(34, 60, 80, 0.29);
+        -moz-box-shadow: 10px 10px 15px 4px rgba(34, 60, 80, 0.29);
+        box-shadow: 10px 10px 15px 4px rgba(34, 60, 80, 0.29);
+        z-index: 1;
+
+    }
+
 }

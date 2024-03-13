@@ -6,7 +6,7 @@ export default function Items(props) {
     return(
         <main>
             {props.allItems.map(element => (
-                <Item key = {element.id} item = {element}/> // Ключ это уникальный элемент для каждого товара
+                <Item key = {element.id} item = {element} onAdd = {props.onAdd}/> // Задаётся такое же название как и в app.js
             ))}
         </main>
     )
