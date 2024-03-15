@@ -4,9 +4,20 @@
 }
 
 header {
+
     background: black;
     color: white;
     position: relative;
+    padding-top: 40px;
+
+    .empty{
+
+        h2{
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: white;
+        }
+    }
 
     .logo {
         font-weight: 600;
@@ -74,7 +85,7 @@ header {
     .shopCart {
         position: absolute;
         color: grey;
-        top: 30px;
+        top: 60px;
         right: 0;
         width: 450px;
         min-height: 100px;
@@ -83,7 +94,10 @@ header {
         -moz-box-shadow: 10px 10px 15px 4px rgba(34, 60, 80, 0.29);
         box-shadow: 10px 10px 15px 4px rgba(34, 60, 80, 0.29);
         z-index: 1;
+        padding: 20px;
+        padding-bottom: 0;
 
+        
     }
 
 }

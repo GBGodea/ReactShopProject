@@ -1,10 +1,33 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss"
 import { FaShoppingCart } from "react-icons/fa";
+import Orders from "../Orders"
 
-export default function Header() {
+
+
+export default function Header(props) { // props используется для передачи данных
     
     let [cartOpen, setCartOpen] = useState(false); // Начальное значение для useState() я задаю false
+
+    const showOrders=(props)=>{
+        return(
+            <div>
+                {props.orders.map(el=>(
+                    <Orders onDelete={props.onDelete} key={el.id} item={el}/>
+                ))}
+            </div>
+        )
+    }
+
+    const showNothing=()=>{
+        return(// Создаю div блок с className
+            <div className={styles.empty}> 
+                <h2>Товары отсутствуют в корзине</h2>
+            </div>
+        )
+    }
+
+    console.log(props.orders.length);
 
     return(
         <header>
@@ -20,7 +43,14 @@ export default function Header() {
                 {console.log(cartOpen ? styles.active : "")}
 
                 {cartOpen &&(
-                    <div className={styles.shopCart}></div>
+                    <div className={styles.shopCart}>
+                        {/* props.orders.map(el => ( */}
+                            {/* // {props.orders.length>0 ? showOrders(proprs) : showNothing()}
+                            // props.orders.length>2 ? <Orders key={el.id} item={el}/> : <h1>Ничего нет</h1> Данное логическое условие не совсем работает, так как у меня .map запускается по килку кнопки, а тут нет клика и поэтому здесь не работает
+                            // <Orders key={el.id} item={el}/>
+                            // showOrders(props)  showNothing(); */}
+                            {props.orders.length>0 ? showOrders(props) : showNothing()} {/*Здесь всё работает так, так как если я сделаю через цикл, вся функция перестанет работать в виду того, что в цикле я сделал по клику, а мне нужно, чтобы showNothing сработал сразу, а потом уже функция showOrders по клику, поэтому я перенёс всё в отдельные функции */} 
+                    </div>
                 )}
             </div>
             <div className = {styles.presentation}></div>
