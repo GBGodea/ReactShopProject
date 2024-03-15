@@ -10,11 +10,15 @@ export default function Header(props) { // props используется для
     let [cartOpen, setCartOpen] = useState(false); // Начальное значение для useState() я задаю false
 
     const showOrders=(props)=>{
+        let summ=0;
+        // summ+= Number.parseFloat(element)
+        props.orders.forEach(element => {summ+= Number.parseFloat(element.price)});
         return(
             <div>
                 {props.orders.map(el=>(
                     <Orders onDelete={props.onDelete} key={el.id} item={el}/>
                 ))}
+                <p className={styles.summ}>Итого: {Intl.NumberFormat().format(summ)}</p>
             </div>
         )
     }

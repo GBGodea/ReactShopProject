@@ -14,7 +14,7 @@ function App() {
       img: "JavaScript.png",
       desc: "lorem ipsum dolor",
       category: "Programming Language",
-      price: "Free",
+      price: "111",
     }, 
     { // Второй товар
       id: 2,
@@ -22,7 +22,7 @@ function App() {
       img: "NodeJS.png",
       desc: "lorem ipsum dolor",
       category: "FrameWork",
-      price: "Free", 
+      price: "333", 
     }, 
     { // Третий товар
       id: 3,
