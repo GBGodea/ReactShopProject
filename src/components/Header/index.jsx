@@ -12,7 +12,13 @@ export default function Header(props) { // props используется для
     const showOrders=(props)=>{
         let summ=0;
         // summ+= Number.parseFloat(element)
-        props.orders.forEach(element => {summ+= Number.parseFloat(element.price)});
+        props.orders.forEach(element => {
+            // summ+= Number.parseFloat(element.price)});
+            if(element.price==="Free") {
+                summ+=0;
+            } else if(typeof Number.parseFloat(element.price) === "number"){
+                summ+= Number.parseFloat(element.price);
+    }})
         return(
             <div>
                 {props.orders.map(el=>(

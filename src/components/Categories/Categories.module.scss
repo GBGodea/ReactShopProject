@@ -1,0 +1,22 @@
+.categories {
+    text-align: center;
+
+    div {
+        display: inline-block;
+        background: mediumslateblue;
+        border-radius: 8px;
+        padding: 10px 30px;
+        margin: 5px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 500ms ease;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+
+        &:hover {
+            border-color: black;
+            transform: scale(1.05);
+        }
+    }
+}

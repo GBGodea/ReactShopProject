@@ -1,0 +1,59 @@
+.fullItem {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 1, 0.634);
+    z-index: 1;
+    overflow: auto;
+    text-align: center;
+
+    h2, b, p {
+        margin:10px 20px;
+        color:aqua;
+        padding-bottom:25px;
+    }
+
+    b {
+        color: black;
+    }
+
+    .addToCard {
+        position: absolute;
+        right: 20px;
+        bottom: -30px;
+        transition: transform 0.5s ease;
+        width:35px;
+        height:35px;
+
+        &:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+    }
+
+    .item {
+        img {
+            width: 50%;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    div {
+        width: 30%;
+        position: relative;
+        margin: 10% auto;   
+        padding: 40px 30px;
+        background-color: orangered;
+        border-radius: 15px;
+
+        .hoverImage {
+            width: 600px;
+        }
+    }
+}

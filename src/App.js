@@ -1,11 +1,16 @@
 import React from "react";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Header from "./components/Header";
 import Items from "./components/Items";
 import Footer from "./components/Footer";
 import "./index.scss";
+import Categories from "./components/Categories";
+import ShowFullItem from "./components/ShowFullItem";
 
 function App() {
+
+  
+  
 
   const [items, setItems] = useState([
     { // Первый товар
@@ -69,7 +74,7 @@ function App() {
       title: "Assembler",
       img: "Assembler.jpg",
       desc: "lorem ipsum dolor",
-      category: "Programming Language - that is sooooo gooooooood",
+      category: "Programming Language",
       price: "Free",
     },
     { // Девятый товар
@@ -97,8 +102,14 @@ function App() {
       price: "Free",
     }
   ]);
-
   const[orders, setOrders] = useState([]);
+  const [currentItems, setCurrentItems] = useState([]);
+  const [showFullItem, setShowFullItem] = useState(false);
+  const [fullItem, setFullItem] = useState({});
+
+  useEffect(()=>{
+    setCurrentItems(items);
+  }, [items]);
   
   const deleteElem=(id)=>{
     setOrders(orders.filter((el)=>el.id!==id));
@@ -111,10 +122,29 @@ function App() {
     }
 } 
 
+  // const checkCategory=()=>{
+    // if(items.category == Categories.key)
+  // }
+
+  const chooseCategory=(category)=>{
+    if(category==="all") {
+      setCurrentItems(items);
+    } else {
+      setCurrentItems(items.filter((el) => el.category === category))
+    }
+  }
+
+  const onShowItem=(item)=> {
+    setFullItem(item);
+    setShowFullItem(!showFullItem);
+  }
+
   return (
     <div className = "wrapper">
       <Header orders = {orders} onDelete={deleteElem}/>
-      <Items allItems = {items} onAdd = {addToOrder} /> {/*Переменная onAdd, которая принимает функцию addToOrder*/}
+      <Categories chooseCategory={chooseCategory}/>
+      <Items allItems = {currentItems} onAdd = {addToOrder} onShowItem={onShowItem}/> {/*Переменная onAdd, которая принимает функцию addToOrder*/}
+      {showFullItem && <ShowFullItem onShowItem={onShowItem} onAdd={addToOrder} item={fullItem}/>} {/*showFullItem - это useState, ShowFullItem - это компонент React. Если переменная false, то и компонент работать не будет*/}
       <Footer />
     </div>
   );

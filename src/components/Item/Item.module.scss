@@ -7,11 +7,11 @@
     border-radius: 7%;
     padding: 10px;
     overflow: hidden; // Скроет все выходящие края увеличиющейся картинки
-    
 
     .hoverImg {
         border-radius: 7%;
         transition: transform 0.3s linear;
+        cursor: pointer;
     }
 
     .hoverImg:hover {
