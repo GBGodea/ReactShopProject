@@ -1,11 +1,13 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext, createContext} from "react";
 import Header from "./components/Header";
 import Items from "./components/Items";
 import Footer from "./components/Footer";
 import "./index.scss";
 import Categories from "./components/Categories";
 import ShowFullItem from "./components/ShowFullItem";
+
+const AppContext = createContext();
 
 function App() {
 
@@ -140,13 +142,29 @@ function App() {
   }
 
   return (
-    <div className = "wrapper">
-      <Header orders = {orders} onDelete={deleteElem}/>
-      <Categories chooseCategory={chooseCategory}/>
-      <Items allItems = {currentItems} onAdd = {addToOrder} onShowItem={onShowItem}/> {/*Переменная onAdd, которая принимает функцию addToOrder*/}
-      {showFullItem && <ShowFullItem onShowItem={onShowItem} onAdd={addToOrder} item={fullItem}/>} {/*showFullItem - это useState, ShowFullItem - это компонент React. Если переменная false, то и компонент работать не будет*/}
-      <Footer />
-    </div>
+    <AppContext.Provider value={{
+      items, // Переменная
+      setItems, // Переменная
+      orders, // Переменная
+      setOrders, // Переменная
+      currentItems, // Переменная
+      setCurrentItems, // Переменная
+      showFullItem, // Переменная
+      setShowFullItem, // Переменная
+      fullItem, // Переменная
+      setFullItem, // Переменная
+      deleteElem, // Функция
+      addToOrder, // Функция
+      chooseCategory // Функция
+    }}>
+      <div className = "wrapper">
+        <Header/>
+        <Categories/>
+        <Items/> {/*Переменная onAdd, которая принимает функцию addToOrder*/}
+        {showFullItem && <ShowFullItem/>} {/*showFullItem - это useState, ShowFullItem - это компонент React. Если переменная false, то и компонент работать не будет*/}
+        <Footer />
+      </div>
+    </AppContext.Provider>
   );
 }
 

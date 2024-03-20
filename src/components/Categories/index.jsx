@@ -1,8 +1,12 @@
-import React from "react";
+import React, {Children, useContext} from "react";
 import styles from "./Categories.module.scss";
+// Указываю от куда я буду брать import useAppContext
+import { useAppContext } from "../../useAppContext";
 
-export default function Categories(props) {
+export default function Categories() {
     
+    const {chooseCategory}=useContext()
+
     const categories = [
         {
             key: "all",
@@ -29,7 +33,7 @@ export default function Categories(props) {
     return(
         <div className={styles.categories}>
             {categories.map(el => (
-                <div key={el.key} onClick={()=>props.chooseCategory(el.key)}>{el.name}</div>
+                <div key={el.key} onClick={()=>chooseCategory(el.key)}>{el.name}</div>
             ))}
         </div>
     )
