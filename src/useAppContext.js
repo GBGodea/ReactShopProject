@@ -131,6 +131,7 @@ export const AppProvider = ({children}) => { // {children} - указывает,
       useEffect(()=>{
         setCurrentItems(items);
       }, [items]);
+      
       const deleteElem=(id)=>{
         setOrders(orders.filter((el)=>el.id!==id));
       }
@@ -174,7 +175,8 @@ export const AppProvider = ({children}) => { // {children} - указывает,
         setFullItem, // Переменная
         deleteElem, // Функция
         addToOrder, // Функция
-        chooseCategory // Функция
+        chooseCategory, // Функция
+        onShowItem
       }
 
       // указываю return
@@ -183,3 +185,5 @@ export const AppProvider = ({children}) => { // {children} - указывает,
       return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
 
 }
+
+export default AppProvider;

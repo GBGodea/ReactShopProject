@@ -5,7 +5,7 @@ import { useAppContext } from "../../useAppContext";
 
 export default function Categories() {
     
-    const {chooseCategory}=useContext()
+    const {chooseCategory}=useAppContext()
 
     const categories = [
         {

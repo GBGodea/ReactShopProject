@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./Items.module.scss";
 import Item from "./../Item";
+import { useAppContext } from "../../useAppContext";
 
-export default function Items(props) {
+export default function Items() {
+    const {currentItems} = useAppContext();
     return(
         <main>
-            {props.allItems.map(element => (
-                <Item key = {element.id} item = {element} onAdd = {props.onAdd} onShowItem={props.onShowItem}/> // Задаётся такое же название как и в app.js
+            {currentItems.map(element => ( // Меняю allItems, а currentItems, так как по сути как он узнает что такое allItems, а currentItems, он знает
+                <Item key = {element.id} item = {element}/> // Задаётся такое же название как и в app.js
             ))}
         </main>
     )
