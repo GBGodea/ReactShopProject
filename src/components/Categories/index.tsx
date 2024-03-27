@@ -1,13 +1,21 @@
 import React, {Children, useContext} from "react";
 import styles from "./Categories.module.scss";
 // Указываю от куда я буду брать import useAppContext
-import { useAppContext } from "../../useAppContext";
+import { useAppContext } from "../../useAppContext.tsx";
 
-export default function Categories() {
+// Создаю interface для назначения типов данных свойствам(ключам)
+interface Category {
+    key:string;
+    name:string;
+}
+
+// Тут нужно указать, что key - тип данных string, что name - тип данных string и нужно это указать в interface
+const Categories:React.FC = () => {
     
     const {chooseCategory}=useAppContext()
 
-    const categories = [
+    // Передаю Category
+    const categories:Category[] = [ // Вызываю interface Category и указываю массив [], что он получает массив и принимает в себя
         {
             key: "all",
             name: "Все"
@@ -38,3 +46,5 @@ export default function Categories() {
         </div>
     )
 }
+
+export default Categories; // Экспортирую Categories

@@ -1,10 +1,17 @@
 import React, {useContext, useState, useEffect} from "react";
 
-const AppContext=React.createContext();
+export interface AnyItem {
+  item:any;
+}
+  
+
+const AppContext=React.createContext<any>(null); // Задаю тип данных any, а значение null
+
+
 
 export const useAppContext = () => {
     const context = useContext(AppContext) // Достаю переменные из функции из App.js и AppContext
-
+  
     if(!context) {
         throw new Error("Ошибка получения в useAppContext"); // Данная функция вызывает ошибку, если данные из AppContext не пришли
     }
@@ -12,7 +19,7 @@ export const useAppContext = () => {
     return context;
 }
 
-export const AppProvider = ({children}) => { // {children} - указывает, что и сколько получает, и чтобы не писать много параметров, можно просто заключить в фигурные скобки и тогда сколько бы функция не принимала параметров, она будет принимать их все
+export const AppProvider:React.FC<{children:React.ReactNode}> = ({children}) => { // React.FC - Указывает, что это компонент - Внутри ReactNode находятся строки, числа, логический(boolean), конструкторы и т.д.
     /*
      items, // Переменная
       setItems, // Переменная
@@ -33,7 +40,9 @@ export const AppProvider = ({children}) => { // {children} - указывает,
 
     // Просто копирую все useState переменные (Дополнительно: А пока что для теста я также добавляю все переменные и функции)
     // Тут я данные получил
-    const [items, setItems] = useState([
+
+    // Тут я указываю тип данных, чтобы TypeScript понимал, какие данные я ввёл
+    const [items, setItems] = useState<any[]>([ // Добавляю any[] - чтобы TypeScript понимал тип данных
         { // Первый товар
           id: 1,
           title: "Javascript",
@@ -123,21 +132,21 @@ export const AppProvider = ({children}) => { // {children} - указывает,
           price: "Free",
         }
       ]);
-      const[orders, setOrders] = useState([]);
-      const [currentItems, setCurrentItems] = useState([]);
-      const [showFullItem, setShowFullItem] = useState(false);
-      const [fullItem, setFullItem] = useState({});
+      const[orders, setOrders] = useState<any[]>([]); // Добавляю тип данных any
+      const [currentItems, setCurrentItems] = useState<any[]>([]); // Добавляю тип данных any
+      const [showFullItem, setShowFullItem] = useState<Boolean>(false); // Добавляю тип данных boolean
+      const [fullItem, setFullItem] = useState<any>({}); // Добавляю тип данных any - (Но возможно можно указать тип данных Object) 
     
-      useEffect(()=>{
+      useEffect(()=>{ // тут ничего не указываю
         setCurrentItems(items);
       }, [items]);
       
-      const deleteElem=(id)=>{
+      const deleteElem=(id:number)=>{ // Тут указываю number
         setOrders(orders.filter((el)=>el.id!==id));
       }
     
       // Если id в корзине нет, то товар добавлятся, а если есть, то не добавляется
-      const addToOrder = (item) => {
+      const addToOrder = (item:any) => { // Указываю тип any
         if(!orders.some((el) => el.id === item.id)) { // Сверяется id элемента, который мы хотим добавить, с элементом, которые есть в массиве
           setOrders([...orders, item]) // ...название массива, item - указыват, что добавляется элемент
         }
@@ -147,7 +156,7 @@ export const AppProvider = ({children}) => { // {children} - указывает,
         // if(items.category == Categories.key)
       // }
     
-      const chooseCategory=(category)=>{
+      const chooseCategory=(category:string)=>{ // Добавляю тип данных для понимания TS - string
         if(category==="all") {
           setCurrentItems(items);
         } else {
@@ -155,7 +164,7 @@ export const AppProvider = ({children}) => { // {children} - указывает,
         }
       }
     
-      const onShowItem=(item)=> {
+      const onShowItem=(item:any)=> { // Добавляю тип данных для понимания TS - any
         setFullItem(item);
         setShowFullItem(!showFullItem);
       }
@@ -176,7 +185,8 @@ export const AppProvider = ({children}) => { // {children} - указывает,
         deleteElem, // Функция
         addToOrder, // Функция
         chooseCategory, // Функция
-        onShowItem
+        onShowItem,
+        
       }
 
       // указываю return

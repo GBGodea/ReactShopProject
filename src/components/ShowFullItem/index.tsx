@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./ShowFullItem.module.scss";
-import { useAppContext } from "../../useAppContext";
+import { useAppContext } from "../../useAppContext.tsx";
 
-export default function ShowFullItem() {
+const ShowFullItem:React.FC = () => { // Просто меняю разрешение на tsx и указываю React.FC
     const {fullItem, onShowItem, addToOrder} = useAppContext();
     return (
         <div className={styles.fullItem}>
@@ -19,3 +19,5 @@ export default function ShowFullItem() {
 
     )
 }
+
+export default ShowFullItem; // Прописываю export default

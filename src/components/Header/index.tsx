@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss"
 import { FaShoppingCart } from "react-icons/fa";
-import Orders from "../Orders"
-import { useAppContext } from "../../useAppContext";
+import Orders from "../Orders/index.tsx"
+import { useAppContext } from "../../useAppContext.tsx";
 
 
 
-export default function Header() {
-    const {orders, deleteElem}=useAppContext(); // Фигурные скобки, так как я получаю сразу две переменные - Здесь идёт получение на прямую, а не через props
+const Header:React.FC = () => {
+    const {orders}=useAppContext(); // Фигурные скобки, так как я получаю сразу две переменные - Здесь идёт получение на прямую, а не через props
     
-    let [cartOpen, setCartOpen] = useState(false); // Начальное значение для useState() я задаю false
+    let [cartOpen, setCartOpen] = useState<boolean>(false); // Начальное значение для useState() я задаю false
 
     const showOrders=()=>{
         let summ=0;
@@ -24,7 +24,7 @@ export default function Header() {
         return(
             <div>
                 {orders.map(el=>(
-                    <Orders onDelete={deleteElem} key={el.id} item={el}/> // Тут сразу указываю функцию deleteElem
+                    <Orders key={el.id} item={el}/> // Удаление delteOrder
                 ))}
                 <p className={styles.summ}>Итого: {Intl.NumberFormat().format(summ)}</p>
             </div>
@@ -50,9 +50,7 @@ export default function Header() {
                     <li>Контакты</li>
                     <li>Личный кабинет</li>
                 </ul>
-                <FaShoppingCart className={`${styles.shopIcon} ${cartOpen ? styles.active : ""}`} onClick={() => setCartOpen(cartOpen = !cartOpen)}/>
-
-                {console.log(cartOpen ? styles.active : "")}
+                <FaShoppingCart className={`${styles.shopIcon} ${cartOpen ? styles.active : ""}`} onClick={() => setCartOpen((prevCardOpen) => !prevCardOpen)}/>
 
                 {cartOpen &&(
                     <div className={styles.shopCart}>
@@ -69,3 +67,5 @@ export default function Header() {
         </header>
     )
 }
+
+export default Header;
