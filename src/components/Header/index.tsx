@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Header.module.scss"
+import styles from "./Header.module.scss";
 import { FaShoppingCart } from "react-icons/fa";
 import Orders from "../Orders/index.tsx"
 import { useAppContext } from "../../useAppContext.tsx";
